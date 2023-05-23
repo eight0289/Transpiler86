@@ -1,0 +1,223 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Unused terminals:
+
+    AND
+    BOOLEAN
+    BYTE
+    CHAR
+    DEC
+    DIV_DEC
+    DOUBLE
+    FLOAT
+    ID
+    INT
+    LONG
+    MULTI_LINE_COMMENT
+    MUL_INC
+    NULL
+    OR
+    SHORT
+    SINGLE_LINE_COMMENT
+
+Grammar
+
+Rule 0     S' -> program
+Rule 1     package_statement_or_empty -> package_statement
+Rule 2     package_statement_or_empty -> empty
+Rule 3     statement_without_semicolon -> variable_declaration
+Rule 4     statement_without_semicolon -> variable_initialization
+Rule 5     statement_without_semicolon -> expression_statement
+Rule 6     statement_without_semicolon -> return_statement
+Rule 7     statement_without_semicolon -> variable_increment
+Rule 8     statement_with_semicolon_or_comment -> statement_without_semicolon ;
+Rule 9     statement_with_semicolon_or_comment -> if_statement
+Rule 10    statement_with_semicolon_or_comment -> while_statement
+Rule 11    statement_with_semicolon_or_comment -> comment_statement
+Rule 12    program -> class_declaration_with_comments
+Rule 13    package_statement -> PACKAGE qualified_identifier ;
+Rule 14    expression -> expression + expression
+Rule 15    expression -> expression - expression
+Rule 16    expression -> expression * expression
+Rule 17    expression -> expression / expression
+Rule 18    expression -> expression % expression
+Rule 19    expression -> ( expression )
+Rule 20    expression -> factor
+Rule 21    variable_declaration -> variable_type identifier
+Rule 22    if_statement -> IF ( comparison_expression ) { statement_list_or_empty } else_statement_or_empty
+Rule 23    pre_class_declaration_list -> pre_class_declaration
+Rule 24    pre_class_declaration_list -> pre_class_declaration_list pre_class_declaration
+Rule 25    class_declaration_with_comments -> package_statement_or_empty pre_class_declaration_list class_declaration comment_list_or_empty
+Rule 26    variable_initialization -> variable_type identifier = expression
+Rule 27    comparison_expression -> comparison_expression = = comparison_expression
+Rule 28    comparison_expression -> comparison_expression ! = comparison_expression
+Rule 29    comparison_expression -> comparison_expression > = comparison_expression
+Rule 30    comparison_expression -> comparison_expression < = comparison_expression
+Rule 31    comparison_expression -> comparison_expression < comparison_expression
+Rule 32    comparison_expression -> comparison_expression > comparison_expression
+Rule 33    comparison_expression -> TRUE
+Rule 34    comparison_expression -> FALSE
+Rule 35    class_declaration -> class_modifier_list CLASS identifier extends_or_empty { class_body }
+Rule 36    pre_class_declaration -> comment_list
+Rule 37    pre_class_declaration -> import_statement
+Rule 38    pre_class_declaration -> empty
+Rule 39    expression_statement -> expression
+Rule 40    class_modifier_list -> class_modifier
+Rule 41    class_modifier_list -> class_modifier_list class_modifier
+Rule 42    factor -> DEC_LIT
+Rule 43    factor -> FLOAT_LIT
+Rule 44    factor -> STR_LIT
+Rule 45    factor -> CHAR_LIT
+Rule 46    factor -> unary_minus
+Rule 47    factor -> qualified_identifier
+Rule 48    factor -> method_call
+Rule 49    factor -> new_statement
+Rule 50    import_statement -> IMPORT qualified_identifier ;
+Rule 51    return_statement -> RETURN expression
+Rule 52    return_statement -> RETURN empty
+Rule 53    variable_increment -> identifier + +
+Rule 54    variable_increment -> identifier INC expression
+Rule 55    class_modifier -> PUBLIC
+Rule 56    class_modifier -> PRIVATE
+Rule 57    class_modifier -> VOID
+Rule 58    class_modifier -> STATIC
+Rule 59    class_modifier -> variable_type
+Rule 60    unary_minus -> - DEC_LIT
+Rule 61    unary_minus -> - FLOAT_LIT
+Rule 62    else_statement_or_empty -> ELSE { statement_list_or_empty }
+Rule 63    else_statement_or_empty -> empty
+Rule 64    extends_or_empty -> EXTENDS qualified_identifier
+Rule 65    extends_or_empty -> empty
+Rule 66    method_call -> qualified_identifier ( argument_list )
+Rule 67    argument_list -> expression
+Rule 68    argument_list -> expression , argument_list
+Rule 69    argument_list -> empty
+Rule 70    while_statement -> WHILE ( comparison_expression ) { statement_list_or_empty }
+Rule 71    class_body -> method_list_or_empty
+Rule 72    comment_statement -> comment
+Rule 73    method_list_or_empty -> method_list
+Rule 74    method_list_or_empty -> empty
+Rule 75    new_statement -> NEW qualified_identifier ( argument_list )
+Rule 76    method_list -> method_or_comment
+Rule 77    method_list -> method_list method_or_comment
+Rule 78    method_or_comment -> field
+Rule 79    method_or_comment -> method
+Rule 80    method_or_comment -> comment
+Rule 81    field -> class_modifier_list identifier = expression ;
+Rule 82    method -> class_modifier_list identifier ( parameter_list_or_empty ) { statement_list_or_empty }
+Rule 83    parameter_list_or_empty -> parameter_list
+Rule 84    parameter_list_or_empty -> empty
+Rule 85    parameter_list -> parameter_with_type
+Rule 86    parameter_list -> parameter_with_type , parameter_list
+Rule 87    parameter_with_type -> variable_type identifier
+Rule 88    statement_list_or_empty -> statement_list
+Rule 89    statement_list_or_empty -> empty
+Rule 90    statement_list -> statement_with_semicolon_or_comment
+Rule 91    statement_list -> statement_list statement_with_semicolon_or_comment
+
+Terminals, with rules where they appear
+
+!                    : 28
+%                    : 18
+(                    : 19 22 66 70 75 82
+)                    : 19 22 66 70 75 82
+*                    : 16
++                    : 14 53 53
+,                    : 68 86
+-                    : 15 60 61
+/                    : 17
+;                    : 8 13 50 81
+<                    : 30 31
+=                    : 26 27 27 28 29 30 81
+>                    : 29 32
+AND                  : 
+BOOLEAN              : 
+BYTE                 : 
+CHAR                 : 
+CHAR_LIT             : 45
+CLASS                : 35
+DEC                  : 
+DEC_LIT              : 42 60
+DIV_DEC              : 
+DOUBLE               : 
+ELSE                 : 62
+EXTENDS              : 64
+FALSE                : 34
+FLOAT                : 
+FLOAT_LIT            : 43 61
+ID                   : 
+IF                   : 22
+IMPORT               : 50
+INC                  : 54
+INT                  : 
+LONG                 : 
+MULTI_LINE_COMMENT   : 
+MUL_INC              : 
+NEW                  : 75
+NULL                 : 
+OR                   : 
+PACKAGE              : 13
+PRIVATE              : 56
+PUBLIC               : 55
+RETURN               : 51 52
+SHORT                : 
+SINGLE_LINE_COMMENT  : 
+STATIC               : 58
+STR_LIT              : 44
+TRUE                 : 33
+VOID                 : 57
+WHILE                : 70
+error                : 
+{                    : 22 35 62 70 82
+}                    : 22 35 62 70 82
+
+Nonterminals, with rules where they appear
+
+argument_list        : 66 68 75
+class_body           : 35
+class_declaration    : 25
+class_declaration_with_comments : 12
+class_modifier       : 40 41
+class_modifier_list  : 35 41 81 82
+comment              : 72 80
+comment_list         : 36
+comment_list_or_empty : 25
+comment_statement    : 11
+comparison_expression : 22 27 27 28 28 29 29 30 30 31 31 32 32 70
+else_statement_or_empty : 22
+empty                : 2 38 52 63 65 69 74 84 89
+expression           : 14 14 15 15 16 16 17 17 18 18 19 26 39 51 54 67 68 81
+expression_statement : 5
+extends_or_empty     : 35
+factor               : 20
+field                : 78
+identifier           : 21 26 35 53 54 81 82 87
+if_statement         : 9
+import_statement     : 37
+method               : 79
+method_call          : 48
+method_list          : 73 77
+method_list_or_empty : 71
+method_or_comment    : 76 77
+new_statement        : 49
+package_statement    : 1
+package_statement_or_empty : 25
+parameter_list       : 83 86
+parameter_list_or_empty : 82
+parameter_with_type  : 85 86
+pre_class_declaration : 23 24
+pre_class_declaration_list : 24 25
+program              : 0
+qualified_identifier : 13 47 50 64 66 75
+return_statement     : 6
+statement_list       : 88 91
+statement_list_or_empty : 22 62 70 82
+statement_with_semicolon_or_comment : 90 91
+statement_without_semicolon : 8
+unary_minus          : 46
+variable_declaration : 3
+variable_increment   : 7
+variable_initialization : 4
+variable_type        : 21 26 59 87
+while_statement      : 10
+
